@@ -21,19 +21,20 @@ export default async function handler(req, res) {
 
 await sheets.spreadsheets.values.append({
   spreadsheetId: "1hoMj-g6dESp9HJr23VawUHDcC1sikqale482f_G9XY8",
-  range: "Sheet1",   // 🔥 remove !A1
+  range: "Sheet1",   // ✅ REMOVE !A1
   valueInputOption: "USER_ENTERED",
-  insertDataOption: "INSERT_ROWS",
+  insertDataOption: "INSERT_ROWS",  // ✅ IMPORTANT
   requestBody: {
     values: [[
+      new Date().toLocaleString(),  // Timestamp
       body.date,
-      body.agency,
       body.omc,
+      body.agency,
       body.dom_rec,
-      body.dom_dis,
       body.com_rec,
-      body.com_dis,
       body.ind_rec,
+      body.dom_dis,
+      body.com_dis,
       body.ind_dis
     ]]
   }
